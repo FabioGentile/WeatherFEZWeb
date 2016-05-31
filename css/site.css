@@ -1,0 +1,58 @@
+.top_sx {
+   background-color: #C6C6C6;
+}
+
+
+.st_menu {
+   background-color: aliceblue;
+}
+
+.st_main{
+   background-color: cornsilk;
+}
+
+.nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    background-color: #7FCECB;
+}
+
+.errClass{
+	font-weight: bold;
+	color: red;	
+}
+
+.icoRemPren{
+   color: red;
+}
+
+.icoRemPren:hover{
+  color: #B80000;
+}
+
+.table-hover > tbody > tr:hover{
+   background-color: rgba(255, 234, 0, 0.23);
+}
+
+.lista-home{
+   padding: 3px 15px;
+}
+
+.js_alert{
+    margin: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.lbl_logged{
+   font-style: italic;
+   text-align: right;
+   text-decoration: underline;
+}
+.lbl_not_logged{
+   color: #C6C6C6;
+}
+
+.form_err_lbl{   
+   display: none;
+   color: red; 
+}
