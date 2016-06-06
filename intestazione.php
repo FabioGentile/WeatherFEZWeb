@@ -5,7 +5,7 @@
         <br>
         <?php 
             if(!empty($_SESSION['token'])) 
-                echo "<p class='lbl_logged'>Benvenuto</p>"; 
+                echo "<p class='lbl_logged'>Benvenuto ".$_SESSION['username']. "</p>"; 
             else 
                 echo "<p class='lbl_not_logged'>__</p>"; 
         ?>

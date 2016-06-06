@@ -28,7 +28,7 @@
         Redirect('reg.php');
     }
 
-        try {
+    try {
 	$token = WebServiceClient::register($usr, $pwd);
 	
 	if($token === null || $token === ""){

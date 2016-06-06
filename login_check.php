@@ -38,6 +38,7 @@
 
         //istanzio la 'sessione' user
         $_SESSION['token'] = $token;
+	$_SESSION['username'] = $usr;
         setError();
     }
     catch (Exception $e) {

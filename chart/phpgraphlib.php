@@ -705,6 +705,7 @@ class PHPGraphLib {
 				if ($this->data_currency) {
 					$value = $this->applyDataCurrency($value);
 				}
+				//imagettftext($this->image, 20, 0, $adjustedXValue, $adjustedYValue, $this->y_axis_text_color, 'fonts\cour.ttf', $value);
 				//imagestring($this->image, 2, $adjustedXValue, $adjustedYValue, $value, $this->y_axis_text_color);
 				$this->horiz_grid_values[] = array('size' => 2, 'x' => $adjustedXValue, 'y' => $adjustedYValue,
 					'value' => $value, 'color' => $this->y_axis_text_color);
@@ -758,7 +759,8 @@ class PHPGraphLib {
 			imageline($this->image, $line['x1'], $line['y1'], $line['x2'], $line['y2'] , $line['color']);
 		}
 		foreach ($this->horiz_grid_values as $value) {
-			imagestring($this->image, $value['size'], $value['x'], $value['y'], $value['value'], $value['color']);
+			imagettftext($this->image, 10, 0, $value['x'], $value['y'] + 10, $value['color'], 'fonts\Anonymous_Pro.ttf', $value['value']);
+			//imagestring($this->image, $value['size'], $value['x'], $value['y'], $value['value'], $value['color']);
 		}
 		//not implemented in the base library, but used in extensions
 		foreach ($this->vert_grid_values as $value) {
