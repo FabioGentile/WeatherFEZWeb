@@ -238,8 +238,13 @@
 
 				    echo '<img width="'.CHART_WIDTH.'" height="'.CHART_HEIGTH.'" src="chart/lux_graph.png"/>';
 				    ?>									
-				</div>
-					
+				    </div>
+				    
+				    <br/>
+				    <br/>				
+				    <br/>
+				    <br/>
+				    
 					
 				    </form>
                                 </div>			
