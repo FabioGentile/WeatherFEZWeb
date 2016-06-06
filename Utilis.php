@@ -6,6 +6,7 @@
     define('NEWLINE', "<br />\n");
 
     define("ERR_NO_ERROR",0);
+    define("ERR_LOGIN", 1);
 
     define("MAX_USN_LEN",20);
     define("MAX_PWD_LEN",32);
@@ -56,6 +57,11 @@
         die();
     }
 
+    /**
+     * Set the error in the session
+     * @param type $errCode
+     * @param type $errMsg
+     */
     function setError($errCode=ERR_NO_ERROR, $errMsg=""){
         $_SESSION['errCode'] = $errCode;
         $_SESSION['errMsg'] = $errMsg;

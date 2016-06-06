@@ -4,7 +4,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head title="WeatherFez">
         <?php require_once('header.php'); ?>
     </head>
     <body>

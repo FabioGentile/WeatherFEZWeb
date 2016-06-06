@@ -23,18 +23,16 @@
         "reg_check.php" => create_sec_entry(SEC_ONLY_GUEST)
     );
 
-
     //variabili che mi memorizzano lo stato generale dell'interazione con l'utente
     //le salvo in sessione perche a questo punto sono certo di avere i cookie abilitati
     $_SESSION['curr_page_sec_lvl'] = $page_sec_level[basename($_SERVER['PHP_SELF'])]['sec_lvl'];
-    $_SESSION['am_i_logged']       = (!isset($_SESSION['usr']) || empty($_SESSION['usr'])) ? false : true;
+    $_SESSION['am_i_logged']       = (!isset($_SESSION['token']) || empty($_SESSION['token'])) ? false : true;
 
     //se la pagina corrente richiede il login, ma nella sessione non ho settato l'user (=non sono loggato)
     if (!$_SESSION['am_i_logged'] && $_SESSION['curr_page_sec_lvl'] == SEC_LOGGED) {
         setError(ERR_USER_NOT_LOGGED, htmlspecialchars("Accesso non autorizzato, login necessario"));
         Redirect("index.php");
     }
-
 
     if (!isset($_SESSION['errCode']))
         setError();

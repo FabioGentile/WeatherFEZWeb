@@ -1,5 +1,6 @@
 <?php
     require_once('session_check.php');
+    require_once('WebServiceClient.php');
 
     setError();
 
@@ -28,17 +29,20 @@
     }
 
     try {
+	$token = WebServiceClient::login($usr, $pwd);	
+	
+	if($token === null || $token === ""){
+	    setError(ERR_LOGIN, "Login failed, check credentials");	    
+	    Redirect('login.php');
+	}
 
         //istanzio la 'sessione' user
-        $_SESSION['usr']      = $usr;
-        $_SESSION['last_act'] = time();
+        $_SESSION['token'] = $token;
         setError();
-
     }
     catch (Exception $e) {
-        setError(ERR_MYSQL, $e->getMessage() . $sql_er_out);
-        db_close_conn();
-
+        setError(ERR_LOGIN, "Login failed: " . $e->getMessage());
+	
         Redirect('login.php');
     }
 

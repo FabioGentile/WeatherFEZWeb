@@ -1,6 +1,7 @@
 <?php
     require_once('session_check.php');
-
+    require_once('WebServiceClient.php');
+    
     setError();
 
     //SESSION[user] non settato, l'utente e' arrivato qua perche' vuole registrarsi
@@ -27,15 +28,24 @@
         Redirect('reg.php');
     }
 
-    try {
-        //chiamo ws reg
+        try {
+	$token = WebServiceClient::register($usr, $pwd);
+	
+	if($token === null || $token === ""){
+	    setError(ERR_LOGIN, "Registration failed");	    
+	    Redirect('reg.php');
+	}
+
+        //istanzio la 'sessione' user
+        $_SESSION['token'] = $token;
+        setError();
     }
     catch (Exception $e) {
-        setError(ERR_MYSQL, $e->getMessage() . $sql_er_out);
-        db_close_conn();
-
-        Redirect('reg.php');
+        setError(ERR_LOGIN, "Registration failed: " . $e->getMessage());
+	
+        Redirect('login.php');
     }
-    Redirect('login.php');
 
+    Redirect('pers.php'); //accesso effettuato
+    
 ?>   

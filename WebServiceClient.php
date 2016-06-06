@@ -4,25 +4,28 @@
  *
  * @author Fabio
  */
+define("WEB_SERVICE_IP","192.168.1.53:40000");
+
 class WebServiceClient {
-    
-    private static $wsdl_URL = 'http://localhost:40000/WeatherFEZWS?singleWsdl';
-    private static $svc_URL = 'http://172.29.166.224:40000/WeatherFEZWS';
+    private static $wsdl_URL = 'http://'.WEB_SERVICE_IP.'/WeatherFEZWS?singleWsdl';
+    private static $svc_URL = 'http://'.WEB_SERVICE_IP.'/WeatherFEZWS';
     
     /**
      * Creo un client per comunicare con il WS
      * @return type SoapClient client per il WS
      */
     private static function get_soap_client(){
+	$ret = null;
         try {
             // Creo l'oggetto per la comunicazione al WS
             $ret = new SoapClient(self::$wsdl_URL, array( 'soap_version' => SOAP_1_2,
                                                 'keep_alive' => false,
                                                 'cache_wsdl' => WSDL_CACHE_MEMORY));
-            return $ret;
         } catch (Exception $exc) {
+	    echo $exc->getMessage();
             return NULL;
         }
+	return $ret;
     }
     
     /**
@@ -36,35 +39,38 @@ class WebServiceClient {
         
         try {
             $soap_client = self::get_soap_client();
-            
+	    
             if($soap_client === NULL)
                 throw new Exception;
             
             // Imposto gli header della richiesta
             $actionHdr[] = new SoapHeader(  'http://www.w3.org/2005/08/addressing',
                                             'Action',
-                                            'http://WeatherFEZWS/IService/login',
+                                            'http://WeatherFEZWS/IService/Login',
                                             1);
     
             $actionHdr[] = new SoapHeader(  'http://www.w3.org/2005/08/addressing', 
                                             'To', 
                                             self::$svc_URL,  
                                             1);
-            $soapClient->__setSoapHeaders($actionHdr);
+            $soap_client->__setSoapHeaders($actionHdr);
             
             
             // Imposto i parametri
             $param = array( 'username' => new SoapVar($username,XSD_STRING,'string','http://www.w3.org/2001/XMLSchema'),
                             'password' => new SoapVar($password,XSD_STRING,'string','http://www.w3.org/2001/XMLSchema'));
             
+	    
+	    
             // Richiamo il WS
-            $result = $soapClient->login($param);
-            
+            $result = $soap_client->login($param);
+	    
             // Salvo il risultato
-            $ret = $result->loginResult;
+            $ret = $result->LoginResult;
             
-        } catch (Exception $exc) {
-            return $ret;
+        } 
+	catch (Exception $exc) {
+            return null;
         }
         
         return $ret;
@@ -88,14 +94,14 @@ class WebServiceClient {
             // Imposto gli header della richiesta
             $actionHdr[] = new SoapHeader(  'http://www.w3.org/2005/08/addressing',
                                             'Action',
-                                            'http://WeatherFEZWS/IService/register',
+                                            'http://WeatherFEZWS/IService/Register',
                                             1);
     
             $actionHdr[] = new SoapHeader(  'http://www.w3.org/2005/08/addressing', 
                                             'To', 
                                             self::$svc_URL,  
                                             1);
-            $soapClient->__setSoapHeaders($actionHdr);
+            $soap_client->__setSoapHeaders($actionHdr);
             
             
             // Imposto i parametri
@@ -103,13 +109,14 @@ class WebServiceClient {
                             'password' => new SoapVar($password,XSD_STRING,'string','http://www.w3.org/2001/XMLSchema'));
             
             // Richiamo il WS
-            $result = $soapClient->login($param);
+            $result = $soap_client->Register($param);
             
             // Salvo il risultato
-            $ret = $result->registerResult;
+            $ret = $result->RegisterResult;
             
-        } catch (Exception $exc) {
-            return $ret;
+        } 
+	catch (Exception $exc) {
+            return null;
         }
         
         return $ret;
