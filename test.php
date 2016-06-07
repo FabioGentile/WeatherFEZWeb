@@ -13,6 +13,17 @@ $temperature += round(mt_rand(0, mt_getrandmax() - 1) / mt_getrandmax() * 3  - 1
 $pressure += round(mt_rand(0, mt_getrandmax() - 1) / mt_getrandmax() * 2 - 1.0, 1);
 $luminosity += mt_rand(0,4) - 2;
 
+if($humidity > 100 || $humidity < 0)
+    $humidity = 50;
+
+if($temperature > 50 || $temperature < (-15))
+   $temperature = 20.0;
+
+if($pressure > 1000 || $pressure < 970)
+    $pressure =  985.0;
+
+if($luminosity > 1000 || $luminosity < 0 )
+    $luminosity = 200;
 
 //ws
 WebServiceClient::save_values($token, $temperature, $pressure, $humidity, $luminosity);
