@@ -2,7 +2,7 @@
 require 'Utilis.php';
 require 'WebServiceClient.php';
 
-$token = '8NC3LSONB6GX8YGL';
+$token = 'MU98HLYT6DVBLC0Z';
 $humidity = isset($_GET['hum']) ? $_GET['hum'] : 60;
 $temperature = isset($_GET['temp']) ? $_GET['temp'] : 25;
 $pressure = isset($_GET['press']) ? $_GET['press'] : 980;

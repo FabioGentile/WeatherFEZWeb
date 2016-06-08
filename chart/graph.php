@@ -23,6 +23,7 @@ function get_base_chart($data_array,$out_file){
     return $graph;
 }
 
+
 function hum_chart($data, $title_period){
     $data_array = array_reverse(array_filter(explode(";",$data)));
 
@@ -56,15 +57,15 @@ function press_chart($data, $title_period){
 
     $graph = get_base_chart($data_array,'chart/pres_graph.png');
     $graph->setTitle('Atmospherical Pressure - ' . $title_period);
-    $graph->setDataFormat('hPa');
+    $graph->setDataFormat(' hPa ');
     
     //Calcolo il range
     $max = max($data_array);
     $min = min($data_array);
 
-    $max = min(1000, (int)($max * 1.1));
-    $min = max(970, (int)($min * 0.9));
-
+    $max = round(min(1000, ($max * 1.001)), 1);
+    $min = round(max(970, ($min * 0.999)), 1);
+    
     $graph->setRange($max,$min);
 
     $graph->createGraph();
@@ -87,17 +88,15 @@ function temp_chart($data, $title_period){
     $max = max($data_array);
     $min = min($data_array);
 
-    $max = min(50, (int)($max * 1.1));
-    $min = max(-20, (int)($min * 0.9));
+    $max = round(min(50, ($max * 1.05)), 1);
+    $min = round(max(-20, ($min * 0.95)), 1);
 
     $graph->setRange($max,$min);
 
-    $graph->createGraph();
-    
+    $graph->createGraph();    
 }
 
 function lux_chart($data, $title_period){
-
     $data_array = array_reverse(array_filter(explode(";",$data)));
 
     if(sizeof($data_array) === 0){
@@ -118,6 +117,5 @@ function lux_chart($data, $title_period){
 
     $graph->setRange($max,$min);
 
-    $graph->createGraph();
-    
+    $graph->createGraph();    
 }
