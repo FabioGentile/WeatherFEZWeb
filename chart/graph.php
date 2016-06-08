@@ -2,11 +2,15 @@
 require_once('Utilis.php');
 require_once('phpgraphlib.php');
 
-function get_base_chart($data_array,$out_file){
-       
+function get_base_chart($data_array, $out_file, $data_format){
+        
     // Creo il grafico
     $graph = new PHPGraphLib(CHART_WIDTH, CHART_HEIGTH, $out_file);
     $graph->addData($data_array);
+    
+    $max = max($data_array);
+    $min = min($data_array);
+    $avg = round(array_sum($data_array) / count($data_array) , 2);
     
     $graph->setBars(false);
     $graph->setLine(true);
@@ -17,12 +21,21 @@ function get_base_chart($data_array,$out_file){
 
     $graph->setDataValues(false);
     $graph->setDataValueColor('maroon');
+    $graph->setDataFormat($data_format);
+    
+    $graph->setTitleLocation('left');
+    
+    $graph->setLegend(true);
+    $graph->setSwatchOutlineColor("white");
+    $graph->setLegendOutlineColor("white");
+    $graph->setLegendTitle('Min: '.$min.$data_format.' Max: '.$max.$data_format.' Avg: '.$avg.$data_format);
+    
+    $graph->setGoalLine($avg, 'black', 'dashed');
     
     $graph->setXValues(false);
     
     return $graph;
 }
-
 
 function hum_chart($data, $title_period){
     $data_array = array_reverse(array_filter(explode(";",$data)));
@@ -31,10 +44,9 @@ function hum_chart($data, $title_period){
 	$data_array = array(50);
     }
 
-    $graph = get_base_chart($data_array,'chart/hum_graph.png');    
+    $graph = get_base_chart($data_array,'chart/hum_graph.png', '% ');    
     $graph->setTitle('Relative Humidity - ' . $title_period);
-    $graph->setDataFormat('% ');
-
+    
     //Calcolo il range
     $max = max($data_array);
     $min = min($data_array);
@@ -55,9 +67,8 @@ function press_chart($data, $title_period){
 	$data_array = array(985.0);
     }
 
-    $graph = get_base_chart($data_array,'chart/pres_graph.png');
-    $graph->setTitle('Atmospherical Pressure - ' . $title_period);
-    $graph->setDataFormat(' hPa ');
+    $graph = get_base_chart($data_array,'chart/pres_graph.png', ' hPa ');
+    $graph->setTitle('Pressure - ' . $title_period);
     
     //Calcolo il range
     $max = max($data_array);
@@ -80,10 +91,9 @@ function temp_chart($data, $title_period){
     }
 
     // Creo il grafico
-    $graph = get_base_chart($data_array,'chart/temp_graph.png');
+    $graph = get_base_chart($data_array,'chart/temp_graph.png', '°C');
     $graph->setTitle('Temperature - ' . $title_period);
-    $graph->setDataFormat('°C');
-
+    
     //Calcolo il range
     $max = max($data_array);
     $min = min($data_array);
@@ -104,9 +114,8 @@ function lux_chart($data, $title_period){
     }
 
     // Creo il grafico
-    $graph = get_base_chart($data_array,'chart/lux_graph.png');
+    $graph = get_base_chart($data_array,'chart/lux_graph.png', '');
     $graph->setTitle('Luminosity - ' . $title_period);
-    //$graph->setDataFormat('percent');
 
     //Calcolo il range
     $max = max($data_array);

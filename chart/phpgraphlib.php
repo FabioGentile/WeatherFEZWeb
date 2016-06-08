@@ -78,7 +78,7 @@ class PHPGraphLib {
 
 	//padding inside legend box
 	const LEGEND_PADDING = 4; 
-	const LEGEND_MAX_CHARS = 15;
+	const LEGEND_MAX_CHARS = 50;
 
 	//display default
 	protected $height = 300;
@@ -1605,18 +1605,20 @@ class PHPGraphLib {
 			$xValue = $this->legend_x + self::LEGEND_PADDING + ($length_covered * self::LEGEND_TEXT_WIDTH) + ($i * 4 * self::LEGEND_PADDING);
 			$length_covered += strlen($data_label);
 			//draw color boxes
-			if ($this->bool_bars) {
-				if ($this->bool_gradient) {
-					$color = $this->gradient_color_array[$this->data_set_count - $i - 1][0];
-				} else {
-					$color = $this->multi_bar_colors[$this->data_set_count - $i - 1];
-				}
-			} elseif ($this->bool_line && !$this->bool_bars) {
-				$color = $this->line_color[$this->data_set_count - $i - 1];
-			}
-			imagefilledrectangle($this->image, $xValue, $yValue + $swatchToTextOffset, $xValue + $swatchSize, $yValue + $swatchToTextOffset + $swatchSize, $color);
-			imagerectangle($this->image, $xValue, $yValue + $swatchToTextOffset, $xValue + $swatchSize, $yValue + $swatchToTextOffset + $swatchSize, $this->legend_swatch_outline_color);	
-			imagestring($this->image, 2, $xValue + (2 * self::LEGEND_PADDING + 2), $yValue, $data_label, $this->legend_text_color);
+//			if ($this->bool_bars) {
+//				if ($this->bool_gradient) {
+//					$color = $this->gradient_color_array[$this->data_set_count - $i - 1][0];
+//				} else {
+//					$color = $this->multi_bar_colors[$this->data_set_count - $i - 1];
+//				}
+//			} elseif ($this->bool_line && !$this->bool_bars) {
+//				$color = $this->line_color[$this->data_set_count - $i - 1];
+//			}
+			//imagefilledrectangle($this->image, $xValue, $yValue + $swatchToTextOffset, $xValue + $swatchSize, $yValue + $swatchToTextOffset + $swatchSize, $color);
+			//imagerectangle($this->image, $xValue, $yValue + $swatchToTextOffset, $xValue + $swatchSize, $yValue + $swatchToTextOffset + $swatchSize, $this->legend_swatch_outline_color);	
+			
+                        imagettftext($this->image, 12, 0, $xValue +  (2 * self::LEGEND_PADDING + 2) - strlen($data_label) * 2 - 2, $yValue + 11, $this->legend_text_color, 'fonts\Anonymous_Pro.ttf', $data_label);
+                        //imagestring($this->image, 4, $xValue +  (2 * self::LEGEND_PADDING + 2) - strlen($data_label) * 2, $yValue, $data_label, $this->legend_text_color);
 		}
 	}
 
