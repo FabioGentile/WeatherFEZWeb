@@ -14,7 +14,11 @@
         echo menu_format("login.php", $curr_page, "Login");
         echo menu_format("reg.php", $curr_page, "Registrati");
     } else { //pagine per i loggati (logout e personale)
-        echo menu_format("pers.php", $curr_page, "Pagina Personale");
+        echo menu_format("pers_temp.php", $curr_page, "Temperatura");
+        echo menu_format("pers_hum.php", $curr_page, "Umidità");
+        echo menu_format("pers_press.php", $curr_page, "Pressione");
+        echo menu_format("pers_lum.php", $curr_page, "Luminosità");
+        
         echo menu_format("logout.php", $curr_page, "Logout");
     }
 

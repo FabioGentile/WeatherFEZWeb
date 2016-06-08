@@ -2,22 +2,12 @@
 require_once('Utilis.php');
 require_once('phpgraphlib.php');
 
-
-
-function hum_chart($data, $title_period){
-
-    $data_array = array_filter(explode(";",$data));
-
-    if(sizeof($data_array) === 0){
-	$data_array = array(50);
-    }
-
+function get_base_chart($data_array,$out_file){
+       
     // Creo il grafico
-    $graph = new PHPGraphLib(CHART_WIDTH, CHART_HEIGTH, 'chart/hum_graph.png');
+    $graph = new PHPGraphLib(CHART_WIDTH, CHART_HEIGTH, $out_file);
     $graph->addData($data_array);
-
-    $graph->setTitle('Relative Humidity - ' . $title_period);
-
+    
     $graph->setBars(false);
     $graph->setLine(true);
 
@@ -27,12 +17,22 @@ function hum_chart($data, $title_period){
 
     $graph->setDataValues(false);
     $graph->setDataValueColor('maroon');
-    $graph->setDataFormat('% ');
-
+    
     $graph->setXValues(false);
-    //$graph->setXValuesInterval(5);
+    
+    return $graph;
+}
 
-    //$graph->setGrid(false);
+function hum_chart($data, $title_period){
+    $data_array = array_reverse(array_filter(explode(";",$data)));
+
+    if(sizeof($data_array) === 0){
+	$data_array = array(50);
+    }
+
+    $graph = get_base_chart($data_array,'chart/hum_graph.png');    
+    $graph->setTitle('Relative Humidity - ' . $title_period);
+    $graph->setDataFormat('% ');
 
     //Calcolo il range
     $max = max($data_array);
@@ -48,35 +48,16 @@ function hum_chart($data, $title_period){
 }
 
 function press_chart($data, $title_period){
-
-    $data_array = array_filter(explode(";",$data));
+    $data_array = array_reverse(array_filter(explode(";",$data)));
 
     if(sizeof($data_array) === 0){
 	$data_array = array(985.0);
     }
 
-    // Creo il grafico
-    $graph = new PHPGraphLib(CHART_WIDTH, CHART_HEIGTH, 'chart/pres_graph.png');
-    $graph->addData($data_array);
-
+    $graph = get_base_chart($data_array,'chart/pres_graph.png');
     $graph->setTitle('Atmospherical Pressure - ' . $title_period);
-
-    $graph->setBars(false);
-    $graph->setLine(true);
-
-    $graph->setDataPoints(true);
-    $graph->setDataPointColor('red');
-    $graph->setDataPointSize(5);
-
-    $graph->setDataValues(false);
-    $graph->setDataValueColor('maroon');
-    $graph->setDataFormat('hPa ');
-
-    $graph->setXValues(false);
-    //$graph->setXValuesInterval(5);
-
-    //$graph->setGrid(false);
-
+    $graph->setDataFormat('hPa');
+    
     //Calcolo il range
     $max = max($data_array);
     $min = min($data_array);
@@ -91,36 +72,16 @@ function press_chart($data, $title_period){
 }
 
 function temp_chart($data, $title_period){
-
-    $data_array = array_filter(explode(";",$data));
+    $data_array = array_reverse(array_filter(explode(";",$data)));
 
     if(sizeof($data_array) === 0){
 	$data_array = array(20.0);
     }
 
     // Creo il grafico
-    $graph = new PHPGraphLib(CHART_WIDTH, CHART_HEIGTH, 'chart/temp_graph.png');
-    $graph->addData($data_array);
-
+    $graph = get_base_chart($data_array,'chart/temp_graph.png');
     $graph->setTitle('Temperature - ' . $title_period);
-
-    $graph->setBars(false);
-    $graph->setLine(true);
-
-    $graph->setDataPoints(true);
-    $graph->setDataPointColor('red');
-    $graph->setDataPointSize(5);
-
-    $graph->setDataValues(false);
-    $graph->setDataValueColor('maroon');
     $graph->setDataFormat('°C');
-
-    $graph->setXValues(false);
-    //$graph->setXValuesInterval(5);
-
-    
-    
-    //$graph->setGrid(false);
 
     //Calcolo il range
     $max = max($data_array);
@@ -137,39 +98,22 @@ function temp_chart($data, $title_period){
 
 function lux_chart($data, $title_period){
 
-    $data_array = array_filter(explode(";",$data));
+    $data_array = array_reverse(array_filter(explode(";",$data)));
 
     if(sizeof($data_array) === 0){
 	$data_array = array(100);
     }
 
     // Creo il grafico
-    $graph = new PHPGraphLib(CHART_WIDTH, CHART_HEIGTH, 'chart/lux_graph.png');
-    $graph->addData($data_array);
-
+    $graph = get_base_chart($data_array,'chart/lux_graph.png');
     $graph->setTitle('Luminosity - ' . $title_period);
-
-    $graph->setBars(false);
-    $graph->setLine(true);
-
-    $graph->setDataPoints(true);
-    $graph->setDataPointColor('red');
-    $graph->setDataPointSize(5);
-
-    $graph->setDataValues(false);
-    $graph->setDataValueColor('maroon');
     //$graph->setDataFormat('percent');
-
-    $graph->setXValues(false);
-    //$graph->setXValuesInterval(5);
-
-    //$graph->setGrid(false);
 
     //Calcolo il range
     $max = max($data_array);
     $min = min($data_array);
 
-    $max = min(1000, (int)($max * 1.1));
+    $max = min(4000, (int)($max * 1.1));
     $min = max(0, (int)($min * 0.9));
 
     $graph->setRange($max,$min);

@@ -15,7 +15,10 @@
         "logout.php" => create_sec_entry(SEC_PUBLIC),
         "session_check.php" => create_sec_entry(SEC_PUBLIC),
 
-        "pers.php" => create_sec_entry(SEC_LOGGED),
+        "pers_hum.php" => create_sec_entry(SEC_LOGGED),
+        "pers_temp.php" => create_sec_entry(SEC_LOGGED),
+        "pers_lum.php" => create_sec_entry(SEC_LOGGED),
+        "pers_press.php" => create_sec_entry(SEC_LOGGED),
 
         "login.php" => create_sec_entry(SEC_ONLY_GUEST),
         "reg.php" => create_sec_entry(SEC_ONLY_GUEST),
