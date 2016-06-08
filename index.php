@@ -1,5 +1,6 @@
 <?php
     require_once('session_check.php');
+    require_once 'WebServiceClient.php';
     $display_err_style= $_SESSION['errCode'] == ERR_NO_ERROR ? 'style="display: none;"' : 'style="display: block;"';
 ?>
 <!DOCTYPE html>
@@ -30,23 +31,29 @@
                                 <!-- contenuto della pagina -->
                                 <div class="row">
                                     <div class="col-md-9">    
-                                        <h3>Last measurement at: </h3>
+                                        <?php
+                                            $rt_val = WebServiceClient::get_instant_values();
+                                            
+                                            $instant_value = explode(";", $rt_val);                                        
+                                        ?>
+                                        
+                                        <h3>Last measurement at: <?php echo $instant_value[0]; ?></h3>
                                         <table>
                                             <tr style="border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-color: transparent;">
                                                 <td width="100" heigth="1000"><img width="64" height="64" src="img/termometro.png"/></td>
-                                                <td width="1000" heigth="1000">18 °C</td>                                        
+                                                <td width="1000" heigth="1000"><?php echo $instant_value[1];?> °C</td>                                        
                                             </tr>
                                             <tr style="border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-color: transparent;">
                                                 <td width="100" heigth="1000"><img width="64" height="64" src="img/water.png"/></td>
-                                                <td width="1000" heigth="1000">56 %</td>
+                                                <td width="1000" heigth="1000"><?php echo $instant_value[2];?> %</td>
                                             </tr>
                                             <tr style="border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-color: transparent;">
                                                 <td width="100" heigth="1000"><img width="64" height="64" src="img/pressure.png"/></td>
-                                                <td width="1000" heigth="1000">985.75 hPa</td>
+                                                <td width="1000" heigth="1000"><?php echo $instant_value[3];?> hPa</td>
                                             </tr>
                                             <tr style="border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-color: transparent;">
                                                 <td width="100" heigth="1000"><img width="64" height="64" src="img/sun.png"/></td>
-                                                <td width="1000" heigth="1000">500</td>
+                                                <td width="1000" heigth="1000"><?php echo $instant_value[4];?> lux</td>
                                             </tr>
                                         </table>   
                                         

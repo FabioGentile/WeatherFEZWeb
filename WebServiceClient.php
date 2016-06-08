@@ -249,7 +249,29 @@ class WebServiceClient {
     
     
     public static function get_instant_values(){
+        $ret = array();
         
+        try {
+            $soap_client = self::get_soap_client("GetRealtimeValues");
+            
+            if($soap_client === NULL)
+                throw new Exception;
+            
+            // Imposto i parametri
+            $param = array();
+            
+            // Richiamo il WS
+            $result = $soap_client->GetRealtimeValues($param);
+                        	    
+            // Splitto la stringa ed elimino i buchi
+            $ret = $result->GetRealtimeValuesResult;
+            
+        } 
+	catch (Exception $exc) {
+            return null;
+        }
+        
+        return $ret;
     }
     
     
