@@ -248,6 +248,9 @@ class WebServiceClient {
     }
     
     
+    public static function get_instant_values(){
+        
+    }
     
     
     
