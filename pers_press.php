@@ -8,23 +8,23 @@
     
     if (isset($_POST['press_period']) === true) {
         switch ($_POST['press_period']) {
-            case PERIOD_HOUR:
-                $_SESSION['pres_sel'] = PERIOD_HOUR;
+            case PERIOD_5MINUTES:
+                $_SESSION['pres_sel'] = PERIOD_5MINUTES;
                 break;
-            case PERIOD_DAY:
-                $_SESSION['pres_sel'] = PERIOD_DAY;
+            case PERIOD_30MINUTES:
+                $_SESSION['pres_sel'] = PERIOD_30MINUTES;
                 break;
-            case PERIOD_WEEK:
-                $_SESSION['pres_sel'] = PERIOD_WEEK;
+            case PERIOD_3HOURS:
+                $_SESSION['pres_sel'] = PERIOD_3HOURS;
                 break;
             default:
-                $_SESSION['pres_sel'] = PERIOD_HOUR;
+                $_SESSION['pres_sel'] = PERIOD_5MINUTES;
                 break;
         }
     }
     else{
         if(isset($_SESSION['pres_sel']) == false)
-            $_SESSION['pres_sel'] = PERIOD_HOUR;
+            $_SESSION['pres_sel'] = PERIOD_5MINUTES;
     }
 ?>
 <html lang="en">
@@ -63,23 +63,23 @@
 
 					<label class="radio-inline">
 					    <input type="radio" name="press_period" id="press_radio1" 
-						   value="<?php echo PERIOD_HOUR ?>" onclick="this.form.submit()"  
-						   <?php if($_SESSION['pres_sel'] === PERIOD_HOUR) echo 'checked'; ?>> Hour
+						   value="<?php echo PERIOD_5MINUTES ?>" onclick="this.form.submit()"  
+						   <?php if($_SESSION['pres_sel'] === PERIOD_5MINUTES) echo 'checked'; ?>> 5 Minutes
 					</label>
 					<label class="radio-inline">
 					    <input type="radio" name="press_period" id="press_radio2" 
-						   value="<?php echo PERIOD_DAY ?>" onclick="this.form.submit()"
-						   <?php if($_SESSION['pres_sel'] === PERIOD_DAY) echo 'checked'; ?>> Day
+						   value="<?php echo PERIOD_30MINUTES ?>" onclick="this.form.submit()"
+						   <?php if($_SESSION['pres_sel'] === PERIOD_30MINUTES) echo 'checked'; ?>> 30 Minutes
 					</label>
 					<label class="radio-inline">
 					    <input type="radio" name="press_period" id="press_radio3" 
-						   value="<?php echo PERIOD_WEEK ?>" onclick="this.form.submit()"
-						   <?php if($_SESSION['pres_sel'] === PERIOD_WEEK) echo 'checked'; ?>> Week
+						   value="<?php echo PERIOD_3HOURS ?>" onclick="this.form.submit()"
+						   <?php if($_SESSION['pres_sel'] === PERIOD_3HOURS) echo 'checked'; ?>> 3 Hours
 					</label>
 
 				    <?php					
 				    $pres_value_string = WebServiceClient::get_pressure($_SESSION['token'], $_SESSION['pres_sel']);		
-				    $title_tag = $_SESSION['pres_sel'] === PERIOD_HOUR ? 'Last Hour' : ($_SESSION['pres_sel'] === PERIOD_DAY ? 'Last Day' : 'Last Week');
+				    $title_tag = $_SESSION['pres_sel'] === PERIOD_5MINUTES ? 'Last 5 Minutes' : ($_SESSION['pres_sel'] === PERIOD_30MINUTES ? 'Last 30 Minutes' : 'Last 3 Hours');
 				    press_chart($pres_value_string, $title_tag);
 
 				    echo '<img width="'.CHART_WIDTH.'" height="'.CHART_HEIGTH.'" src="chart/pres_graph.png"/>';

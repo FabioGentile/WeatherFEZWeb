@@ -1,12 +1,7 @@
 <?php
-
 define("CHART_WIDTH", 810);
 define("CHART_HEIGTH", 350);
 define("CHART_POINT", 50);
-
-define('HOUR_PERIOD', 1);
-define('DAY_PERIOD', 2);
-define('WEEK_PERIOD', 3);
 
 define('NEWLINE', "<br />\n");
 
@@ -17,9 +12,9 @@ define("MAX_USN_LEN",20);
 define("MAX_PWD_LEN",32);
 
 // Definizione periodi
-define("PERIOD_HOUR", 1);
-define("PERIOD_DAY", 2);
-define("PERIOD_WEEK", 3);
+define("PERIOD_5MINUTES", 1);
+define("PERIOD_30MINUTES", 2);
+define("PERIOD_3HOURS", 3);
 
 //----------DEFINIZIONE LIVELLI SICUREZZA-------------//
 define("SEC_PUBLIC",0);          //pagine pubbliche, (home)
