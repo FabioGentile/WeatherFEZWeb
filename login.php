@@ -25,7 +25,7 @@
             <div class="col-sm-9 st_main"> <!-- contenuto della pagina -->
                <div class="container-fluid"> 
                   <div class="row">
-                     <h3>Inserisci username e password per effettuare l'accesso</h3>
+                     <h3>Insert username and password to login</h3>
                      <div class="container-fluid"> 
                         <!-- Alert di errore -->
                         <?php require_once('error_alert.php') ?>
@@ -37,13 +37,13 @@
 
                                  <div class="form-group">
                                     <label for="username_p">Username</label>
-                                    <input type="text" class="form-control" name="username_p" id="username_p" placeholder="Inserisci l'username">
+                                    <input type="text" class="form-control" name="username_p" id="username_p" placeholder="Insert username">
                                     <label class="form_err_lbl" id="lbl_err_usr" for="username_p" ></label>
                                  </div>
 
                                  <div class="form-group">
                                     <label class="control-label" for="password_p">Password</label>
-                                    <input type="password" class="form-control" name="password_p" id="password_p" placeholder="Inserisci la password">
+                                    <input type="password" class="form-control" name="password_p" id="password_p" placeholder="Insert password">
                                     <label class="form_err_lbl" id="lbl_err_pwd" for="username_p"></label>
                                  </div>
 

@@ -47,7 +47,7 @@
                 <div class="col-sm-9 st_main">
                     <div class="container-fluid">
                         <div class="row">
-                            <h2>Benvenuto nella tua pagina personale</h2>
+                            <h2>Welcome to your personal page</h2>
                             <br>
                             <div class="container-fluid">
                                 <!-- Alert di errore -->

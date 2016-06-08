@@ -12,7 +12,7 @@
 
     if (!$_SESSION['am_i_logged']) { //pagine per i non loggati (login e registra)
         echo menu_format("login.php", $curr_page, "Login");
-        echo menu_format("reg.php", $curr_page, "Registrati");
+        echo menu_format("reg.php", $curr_page, "Registration");
     } else { //pagine per i loggati (logout e personale)
         echo menu_format("pers_temp.php", $curr_page, "Temperatura");
         echo menu_format("pers_hum.php", $curr_page, "Umidità");
