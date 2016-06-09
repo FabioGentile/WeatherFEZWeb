@@ -6,7 +6,7 @@ require_once('Utilis.php');
  * @author Fabio
  */
 
-define("WEB_SERVICE_IP","192.168.0.103:40000");
+define("WEB_SERVICE_IP","192.168.1.51:40000");
 
 class WebServiceClient {
     private static $wsdl_URL = 'http://'.WEB_SERVICE_IP.'/WeatherFEZWS?singleWsdl';
@@ -128,7 +128,8 @@ class WebServiceClient {
             // Imposto i parametri
             $param = array( 'token' => new SoapVar($token,XSD_STRING,'string','http://www.w3.org/2001/XMLSchema'),
                             'period' => new SoapVar($period,XSD_INTEGER,'int','http://www.w3.org/2001/XMLSchema'),
-			    'maxNValues' => new SoapVar(CHART_POINT,XSD_INTEGER,'int','http://www.w3.org/2001/XMLSchema'));
+			    'maxNValues' => new SoapVar(CHART_POINT,XSD_INTEGER,'int','http://www.w3.org/2001/XMLSchema'),
+			    'printDateTime' => new SoapVar(true, XSD_BOOLEAN, 'bool', 'http://www.w3.org/2001/XMLSchema'));
             
             // Richiamo il WS
             $result = $soap_client->GetHumidity($param);
@@ -162,7 +163,8 @@ class WebServiceClient {
             // Imposto i parametri
             $param = array( 'token' => new SoapVar($token,XSD_STRING,'string','http://www.w3.org/2001/XMLSchema'),
                             'period' => new SoapVar($period,XSD_INTEGER,'int','http://www.w3.org/2001/XMLSchema'),
-			    'maxNValues' => new SoapVar(CHART_POINT,XSD_INTEGER,'int','http://www.w3.org/2001/XMLSchema'));
+			    'maxNValues' => new SoapVar(CHART_POINT,XSD_INTEGER,'int','http://www.w3.org/2001/XMLSchema'),
+			    'printDateTime' => new SoapVar(true, XSD_BOOLEAN, 'bool', 'http://www.w3.org/2001/XMLSchema'));
             
             // Richiamo il WS
             $result = $soap_client->GetTemperature($param);
@@ -197,7 +199,8 @@ class WebServiceClient {
             // Imposto i parametri
             $param = array( 'token' => new SoapVar($token,XSD_STRING,'string','http://www.w3.org/2001/XMLSchema'),
                             'period' => new SoapVar($period,XSD_INTEGER,'int','http://www.w3.org/2001/XMLSchema'),
-			    'maxNValues' => new SoapVar(CHART_POINT,XSD_INTEGER,'int','http://www.w3.org/2001/XMLSchema'));
+			    'maxNValues' => new SoapVar(CHART_POINT,XSD_INTEGER,'int','http://www.w3.org/2001/XMLSchema'),
+			    'printDateTime' => new SoapVar(true, XSD_BOOLEAN, 'bool', 'http://www.w3.org/2001/XMLSchema'));
             
             // Richiamo il WS
             $result = $soap_client->GetPressure($param);
@@ -231,7 +234,8 @@ class WebServiceClient {
             // Imposto i parametri
             $param = array( 'token' => new SoapVar($token,XSD_STRING,'string','http://www.w3.org/2001/XMLSchema'),
                             'period' => new SoapVar($period,XSD_INTEGER,'int','http://www.w3.org/2001/XMLSchema'),
-			    'maxNValues' => new SoapVar(CHART_POINT,XSD_INTEGER,'int','http://www.w3.org/2001/XMLSchema'));
+			    'maxNValues' => new SoapVar(CHART_POINT,XSD_INTEGER,'int','http://www.w3.org/2001/XMLSchema'),
+			    'printDateTime' => new SoapVar(true, XSD_BOOLEAN, 'bool', 'http://www.w3.org/2001/XMLSchema'));
             
             // Richiamo il WS
             $result = $soap_client->GetLuminosity($param);
