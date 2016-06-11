@@ -7,6 +7,7 @@
 <html lang="en">
     <head title="WeatherFez">
         <?php require_once('header.php'); ?>
+    <meta http-equiv="refresh" content="5;URL='index.php'">
     </head>
     <body>
         <!-- Intestazione -->
@@ -41,19 +42,19 @@
                                         <table>
                                             <tr style="border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-color: transparent;">
                                                 <td width="100" heigth="1000"><img width="64" height="64" src="img/termometro.png"/></td>
-                                                <td width="1000" heigth="1000"><?php echo $instant_value[1];?> °C</td>                                        
+                                                <td width="1000" heigth="1000"><?php echo isset($instant_value[1]) ? $instant_value[1] : '20'?> °C</td>                                        
                                             </tr>
                                             <tr style="border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-color: transparent;">
                                                 <td width="100" heigth="1000"><img width="64" height="64" src="img/water.png"/></td>
-                                                <td width="1000" heigth="1000"><?php echo $instant_value[2];?> %</td>
+                                                <td width="1000" heigth="1000"><?php echo isset($instant_value[2]) ? $instant_value[2] : '50'?> %</td>
                                             </tr>
                                             <tr style="border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-color: transparent;">
                                                 <td width="100" heigth="1000"><img width="64" height="64" src="img/pressure.png"/></td>
-                                                <td width="1000" heigth="1000"><?php echo $instant_value[3];?> hPa</td>
+                                                <td width="1000" heigth="1000"><?php echo isset($instant_value[3]) ? $instant_value[3] : '980.0'?> hPa</td>
                                             </tr>
                                             <tr style="border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-color: transparent;">
                                                 <td width="100" heigth="1000"><img width="64" height="64" src="img/sun.png"/></td>
-                                                <td width="1000" heigth="1000"><?php echo $instant_value[4];?> lux</td>
+                                                <td width="1000" heigth="1000"><?php echo isset($instant_value[4]) ? $instant_value[4] : '400'?> lux</td>
                                             </tr>
                                         </table>   
                                         
