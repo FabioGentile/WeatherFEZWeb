@@ -11,7 +11,7 @@ $luminosity = isset($_GET['lux']) ? $_GET['lux'] : 150;
 
 $humidity += mt_rand(0,4) - 2;
 $temperature += round(mt_rand(0, mt_getrandmax() - 1) / mt_getrandmax() * 3  - 1.5, 1);
-$pressure += round(mt_rand(0, mt_getrandmax() - 1) / mt_getrandmax() * 2 - 1.0, 1);
+$pressure += round(mt_rand(0, mt_getrandmax() - 1) / mt_getrandmax() * 2 - 1.0, 2);
 $luminosity += mt_rand(0,4) - 2;
 
 if($humidity > 100 || $humidity < 0)
@@ -28,11 +28,10 @@ if($luminosity > 1000 || $luminosity < 0 )
 
 //ws
 WebServiceClient::save_values($token, $temperature, $pressure, $humidity, $luminosity);
+//WebServiceClient::save_values($token, 0.0, 0.00, 0, 0);
 
 
-sleep(1);
-
-$url = 'test.php?hum=' . $humidity . '&temp=' . $temperature . '&press=' . $pressure . '&lux=' . $luminosity 
+$url = 'test.php?hum=' . $humidity . '&temp=' . $temperature . '&press=' . $pressure . '&lux=' . $luminosity;
 ?>
 <html>
     <head>

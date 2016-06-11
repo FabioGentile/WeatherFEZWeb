@@ -44,9 +44,9 @@
     catch (Exception $e) {
         setError(ERR_LOGIN, "Registration failed: " . $e->getMessage());
 	
-        Redirect('login.php');
+        Redirect('reg.php');
     }
 
-    Redirect('pers.php'); //accesso effettuato
+    Redirect('pers_temp.php'); //accesso effettuato
     
 ?>   

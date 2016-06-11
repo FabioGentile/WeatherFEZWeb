@@ -384,6 +384,7 @@ class PHPGraphLib {
 			$lineX2 = null;
 			reset($data_set);
 			$xStart = $this->y_axis_x1 + ($this->space_width / 2) + ((key($data_set) - $this->lowest_x) * ($this->bar_width + $this->space_width));
+			$item_count = 0;
 			foreach ($data_set as $key => $item) {
 				$hideBarOutline = false;
 
@@ -478,7 +479,7 @@ class PHPGraphLib {
 					
 							//skip and dispplay every x intervals
 							if ($this->x_axis_value_interval) {
-								if ($key % $this->x_axis_value_interval) {
+								if ($item_count % $this->x_axis_value_interval) {
 								} else {
 									imagestringup($this->image, 2, $textHorizPos, $textVertPos, $key,  $this->x_axis_text_color);
 								}
@@ -502,7 +503,7 @@ class PHPGraphLib {
 							
 							//skip and dispplay every x intervals
 							if ($this->x_axis_value_interval) {
-								if ($key % $this->x_axis_value_interval) {
+								if ($item_count % $this->x_axis_value_interval) {
 								} else {
 									imagestring($this->image, 2, $textHorizPos, $textVertPos, $key,  $this->x_axis_text_color);
 								}
@@ -513,6 +514,8 @@ class PHPGraphLib {
 					}
 				}
 				$xStart += $this->bar_width + $this->space_width;
+				
+				$item_count++;
 			}
 		}
 	}
