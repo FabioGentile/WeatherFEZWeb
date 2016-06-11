@@ -2,7 +2,8 @@
 require 'Utilis.php';
 require 'WebServiceClient.php';
 
-$token = 'MU98HLYT6DVBLC0Z';
+//$token = 'MU98HLYT6DVBLC0Z';
+$token = '8NC3LSONB6GX8YGL';
 $humidity = isset($_GET['hum']) ? $_GET['hum'] : 60;
 $temperature = isset($_GET['temp']) ? $_GET['temp'] : 25;
 $pressure = isset($_GET['press']) ? $_GET['press'] : 980;
@@ -35,7 +36,7 @@ $url = 'test.php?hum=' . $humidity . '&temp=' . $temperature . '&press=' . $pres
 ?>
 <html>
     <head>
-    <meta http-equiv="refresh" content="1;URL='<?php echo $url?>'">
+    <meta http-equiv="refresh" content="5;URL='<?php echo $url?>'">
     </head>
     <body>
 	we we 
