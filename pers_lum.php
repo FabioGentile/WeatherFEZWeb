@@ -4,8 +4,9 @@
     require_once('chart/graph.php');
     require_once 'Utilis.php';
 
-    $display_err_style= $_SESSION['errCode'] == ERR_NO_ERROR ? 'style="display: none;"' : 'style="display: block;"';
+    $display_err_style = $_SESSION['errCode'] == ERR_NO_ERROR ? 'style="display: none;"' : 'style="display: block;"';
     
+    //Controllo se mi sono arrivati dati dal form
     if (isset($_POST['lux_period']) === true) {
         switch ($_POST['lux_period']) {
             case PERIOD_5MINUTES:
@@ -76,9 +77,12 @@
 						   <?php if($_SESSION['lux_sel'] === PERIOD_3HOURS) echo 'checked'; ?>> 3 Hours
 					</label>
 
-				    <?php					
+				    <?php		
+				    //Interrogo il WS per ottenere i dati
 				    $lux_value_string = WebServiceClient::get_lum($_SESSION['token'], $_SESSION['lux_sel']);		
+				    //Ricavo la stringa da mettere nel grafico
 				    $title_tag = $_SESSION['lux_sel'] === PERIOD_5MINUTES ? 'Last 5 Minutes' : ($_SESSION['lux_sel'] === PERIOD_30MINUTES ? 'Last 30 Minutes' : 'Last 3 Hours');
+				    //Creo il grafico
 				    lux_chart($lux_value_string, $title_tag);
 
 				    echo '<img width="'.CHART_WIDTH.'" height="'.CHART_HEIGTH.'" src="chart/lux_graph.png"/>';

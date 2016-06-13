@@ -7,6 +7,7 @@
 <html lang="en">
     <head title="WeatherFez">
         <?php require_once('header.php'); ?>
+    <!--    auto refresh della pagina ogni 5 secondi -->
     <meta http-equiv="refresh" content="5;URL='index.php'">
     </head>
     <body>
@@ -33,6 +34,8 @@
                                 <div class="row">
                                     <div class="col-md-9">    
                                         <?php
+					    //Chiedo i dati realtime
+					
                                             $rt_val = WebServiceClient::get_instant_values();
                                             
                                             $instant_value = explode(";", $rt_val);                                        

@@ -5,7 +5,8 @@
     require_once 'Utilis.php';
 
     $display_err_style = $_SESSION['errCode'] == ERR_NO_ERROR ? 'style="display: none;"' : 'style="display: block;"';
-
+    
+    //Controllo se mi sono arrivati dati dal form
     if (isset($_POST['hum_period']) === true) {
         switch ($_POST['hum_period']) {
             case PERIOD_5MINUTES:
@@ -77,9 +78,12 @@
 						       <?php if($_SESSION['hum_sel'] === PERIOD_3HOURS) echo 'checked'; ?>> 3 Hours
 					    </label>
 					
-                                        <?php					
-					$hum_value_string = WebServiceClient::get_humidity($_SESSION['token'], $_SESSION['hum_sel']);		
+                                        <?php		
+					//Interrogo il WS per ottenere i dati
+					$hum_value_string = WebServiceClient::get_humidity($_SESSION['token'], $_SESSION['hum_sel']);	
+					//Ricavo la stringa da mettere nel grafico
 					$title_tag = $_SESSION['hum_sel'] === PERIOD_5MINUTES ? 'Last 5 Minutes' : ($_SESSION['hum_sel'] === PERIOD_30MINUTES ? 'Last 30 Minutes' : 'Last 3 Hours');
+					//Creo il grafico
 					hum_chart($hum_value_string, $title_tag);
 					
 					echo '<img width="'.CHART_WIDTH.'" height="'.CHART_HEIGTH.'" src="chart/hum_graph.png"/>';

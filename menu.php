@@ -2,6 +2,7 @@
 <?php
     $curr_page = basename($_SERVER['PHP_SELF']);
 
+    //Funzione per creare l'entry nel menu, evidenzio la pagina corrente
     function menu_format($target, $current, $desc)
     {
         $ret = sprintf('<li role="presentation" %s><a href="%s">%s</a></li>', ($target == $current) ? "class=\"active\"" : "", $target, $desc);

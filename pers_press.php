@@ -6,6 +6,7 @@
 
     $display_err_style = $_SESSION['errCode'] == ERR_NO_ERROR ? 'style="display: none;"' : 'style="display: block;"';
     
+    //Controllo se mi sono arrivati dati dal form
     if (isset($_POST['press_period']) === true) {
         switch ($_POST['press_period']) {
             case PERIOD_5MINUTES:
@@ -77,9 +78,12 @@
 						   <?php if($_SESSION['pres_sel'] === PERIOD_3HOURS) echo 'checked'; ?>> 3 Hours
 					</label>
 
-				    <?php					
-				    $pres_value_string = WebServiceClient::get_pressure($_SESSION['token'], $_SESSION['pres_sel']);		
+				    <?php		
+				    //Interrogo il WS per ottenere i dati
+				    $pres_value_string = WebServiceClient::get_pressure($_SESSION['token'], $_SESSION['pres_sel']);	
+				    //Ricavo la stringa da mettere nel grafico
 				    $title_tag = $_SESSION['pres_sel'] === PERIOD_5MINUTES ? 'Last 5 Minutes' : ($_SESSION['pres_sel'] === PERIOD_30MINUTES ? 'Last 30 Minutes' : 'Last 3 Hours');
+				    //Creo il grafico
 				    press_chart($pres_value_string, $title_tag);
 
 				    echo '<img width="'.CHART_WIDTH.'" height="'.CHART_HEIGTH.'" src="chart/pres_graph.png"/>';

@@ -4,6 +4,7 @@
         <h1 align="center">WeatherFEZ</h1>
         <br>
         <?php 
+	    //Se sono loggato stampo l'username
             if(!empty($_SESSION['token'])) 
                 echo "<p class='lbl_logged'>Welcome ".$_SESSION['username']. "</p>"; 
             else 

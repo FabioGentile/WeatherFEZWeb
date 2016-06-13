@@ -1,11 +1,8 @@
 <?php
 require_once('Utilis.php');
-/**
- * Classe per comunicare con il WS
- *
- * @author Fabio
- */
 
+
+//IP DEL WS
 define("WEB_SERVICE_IP","192.168.1.51:40000");
 
 class WebServiceClient {
@@ -251,7 +248,9 @@ class WebServiceClient {
         return $ret;
     }
     
-    
+    /**
+     * Richiamo il WS per avere gli ultimi dati letti
+     */
     public static function get_instant_values(){
         $ret = array();
         
@@ -279,7 +278,9 @@ class WebServiceClient {
     }
     
     
-    
+    /*
+     * funzione di test per salvare dei dati sul DB
+     */
     public static function save_values($token, $t, $p, $h, $l){
 	try {
             $soap_client = self::get_soap_client("SaveValues");

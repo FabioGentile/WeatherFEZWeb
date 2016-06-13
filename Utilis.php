@@ -1,12 +1,13 @@
 <?php
-define("CHART_WIDTH", 810);
-define("CHART_HEIGTH", 350);
+define("CHART_WIDTH", 1620);
+define("CHART_HEIGTH", 700);
 define("CHART_POINT", 50);
 
 define('NEWLINE', "<br />\n");
 
 define("ERR_NO_ERROR",0);
 define("ERR_LOGIN", 1);
+define("ERR_GENERIC", 2);
 
 define("MAX_USN_LEN",20);
 define("MAX_PWD_LEN",32);
@@ -18,7 +19,7 @@ define("PERIOD_3HOURS", 3);
 
 //----------DEFINIZIONE LIVELLI SICUREZZA-------------//
 define("SEC_PUBLIC",0);          //pagine pubbliche, (home)
-define("SEC_LOGGED",1);          //pagine visibili solo ai loggati +timeout +ssl
+define("SEC_LOGGED",1);          //pagine visibili solo ai loggati
 define("SEC_ONLY_GUEST",2);      //pagine visibili solo ai NON loggati (registrazione, login)
 
 //---------DEFINIZIONE ALTRE COSE---------------------//
