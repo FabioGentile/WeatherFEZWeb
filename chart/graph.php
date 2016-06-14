@@ -61,8 +61,8 @@ function get_base_chart($data_array, $out_file, $data_format){
 function adapt_data($data_string, $default_value){
     $ret = array();
        
-    // Splitto la stringa e la inverto (il WS me li da invertiti per facilità di utilizzo da parte della FEZ)
-    $data_string = array_reverse(explode(";",$data_string));
+    // Splitto la stringa 
+    $data_string = explode(";",$data_string);
 
     //Se l'array è vuoto
     if(sizeof($data_string) === 0){
@@ -73,9 +73,9 @@ function adapt_data($data_string, $default_value){
     
     // Altrimenti ogni 2 elementi estraggo il timestamp e il valore
     for ($i = 0; $i < count($data_string); $i+=2) {
-	$val = $data_string[$i];
+	$val = $data_string[$i+1];
 	// Per la data prendo solo le informazioni relative all'ora (il formato è gg/mm/aaa hh:mm:ss
-	$date = explode(' ',$data_string[$i+1])[1];
+	$date = explode(' ',$data_string[$i])[1];
 	
 	$ret[$date] = $val;
     }

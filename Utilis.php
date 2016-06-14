@@ -1,6 +1,6 @@
 <?php
-define("CHART_WIDTH", 1620);
-define("CHART_HEIGTH", 700);
+define("CHART_WIDTH", 810);
+define("CHART_HEIGTH", 350);
 define("CHART_POINT", 50);
 
 define('NEWLINE', "<br />\n");

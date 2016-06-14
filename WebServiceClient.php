@@ -3,7 +3,7 @@ require_once('Utilis.php');
 
 
 //IP DEL WS
-define("WEB_SERVICE_IP","192.168.1.51:40000");
+define("WEB_SERVICE_IP","192.168.0.101:40000");
 
 class WebServiceClient {
     private static $wsdl_URL = 'http://'.WEB_SERVICE_IP.'/WeatherFEZWS?singleWsdl';
