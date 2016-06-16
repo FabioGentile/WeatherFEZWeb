@@ -65,7 +65,7 @@ function adapt_data($data_string, $default_value){
     $data_string = explode(";",$data_string);
 
     //Se l'array è vuoto
-    if(sizeof($data_string) === 0){
+    if(sizeof($data_string) < 2){
 	//Valore di default
 	$ret = array(date("h:m:s") => $default_value);
 	return $ret;
