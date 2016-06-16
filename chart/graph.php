@@ -94,8 +94,8 @@ function hum_chart($data, $title_period){
     $max = max($formatted_data);
     $min = min($formatted_data);
 
-    $max = min(100, (int)($max * 1.1) + 1);
-    $min = max(0, (int)($min * 0.9) - 1);
+    $max = min(100, $max  + 1);
+    $min = max(0, $min - 1);
 
     $graph->setRange($max,$min);
 
@@ -107,16 +107,18 @@ function press_chart($data, $title_period){
     //Adatto i dati
     $formatted_data = adapt_data($data, 985.0);
 
-    $graph = get_base_chart($formatted_data,'chart/pres_graph.png', ' hPa ');
+    $graph = get_base_chart($formatted_data,'chart/pres_graph.png', 'hPa ');
     $graph->setTitle('Pressure - ' . $title_period);
     
     //Calcolo il range
     $max = max($formatted_data);
     $min = min($formatted_data);
 
-    $max = round(min(1000, ($max * 1.001)) + 0.1, 1);
-    $min = round(max(970, ($min * 0.999)) - 0.1, 1);
+    $max = round(min(1000, $max  + 0.1), 1);
+    $min = round(max(970, $min - 0.1), 1);
     
+
+
     $graph->setRange($max,$min);
 
     $graph->createGraph();
@@ -135,8 +137,8 @@ function temp_chart($data, $title_period){
     $max = max($formatted_data);
     $min = min($formatted_data);
 
-    $max = round(min(50, ($max * 1.05)) + 0.5, 1);
-    $min = round(max(-20, ($min * 0.95)) - 0.5, 1);
+    $max = round(min(50, $max + 0.5), 1);
+    $min = round(max(-20, $min - 0.5), 1);
 
     $graph->setRange($max,$min);
 
@@ -155,8 +157,8 @@ function lux_chart($data, $title_period){
     $max = max($formatted_data);
     $min = min($formatted_data);
 
-    $max = min(4000, (int)($max * 1.1) + 1);
-    $min = max(0, (int)($min * 0.9) - 1);
+    $max = min(4000, $max  + 10);
+    $min = max(0, $min - 10);
 
     $graph->setRange($max,$min);
 
